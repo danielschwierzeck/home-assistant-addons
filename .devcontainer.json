@@ -1,6 +1,6 @@
 {
   "name": "Home Assistant add-on repository",
-  "image": "ghcr.io/home-assistant/devcontainer:addons",
+  "image": "ghcr.io/danielschwierzeck/devcontainer:addons",
   "appPort": ["7123:8123", "7357:4357"],
   "postStartCommand": "bash devcontainer_bootstrap",
   "runArgs": ["-e", "GIT_EDITOR=code --wait", "--privileged"],
@@ -8,7 +8,10 @@
     "WORKSPACE_DIRECTORY": "${containerWorkspaceFolder}"
   },
   "extensions": ["timonwong.shellcheck", "esbenp.prettier-vscode", "yzhang.markdown-all-in-one"],
-  "mounts": ["type=volume,target=/var/lib/docker"],
+  "mounts": [
+    "type=volume,target=/var/lib/docker",
+    "type=bind,src=/sys/kernel/security,dst=/sys/kernel/security"
+  ],
   "settings": {
     "terminal.integrated.profiles.linux": {
       "zsh": {
